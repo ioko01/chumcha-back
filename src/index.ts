@@ -25,6 +25,7 @@ app.get("/", async (req: Request, res: Response) => {
 });
 
 app.post("/confirm/menu", async (req: Request, res: Response) => {
+    console.log("object");
     const data: IMenu[] = req.body;
     const dataRef = db.collection('confirmBills');
     const myDocRef = dataRef.doc();
