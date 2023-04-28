@@ -3,7 +3,7 @@ import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import { db } from "./utils/firebase";
-import cors, { CorsOptions } from "cors";
+import cors from "cors";
 import { IMenu } from "./interfaces/interface_menu";
 config();
 
@@ -17,21 +17,31 @@ app.use(cookieParser());
 app.use(cors());
 
 
-app.get("/", async (req: Request, res: Response) => {
-    const dataRef = db.collection('data');
+app.get("/get/menu", async (req: Request, res: Response) => {
+    const dataRef = db.collection('menu');
     const snapshot = await dataRef.get();
     const data = snapshot.docs.map((doc) => doc.data());
     res.json(data);
 });
 
 app.post("/confirm/menu", async (req: Request, res: Response) => {
-    console.log("object");
     const data: IMenu[] = req.body;
     const dataRef = db.collection('confirmBills');
-    const myDocRef = dataRef.doc();
-    myDocRef.set({ data }).then(() => {
-        res.json(`Data added with ID: ${dataRef.id}`);
+    const date = new Date();
+    data.map(val => {
+        val.createdAt = date;
+        val.updatedAt = date;
+    });
+    dataRef.add({ data }).then(() => {
+        res.json(`Data added Successfully`);
     })
+});
+
+app.get("/get/confirm/menu", async (req: Request, res: Response) => {
+    const dataRef = db.collection('confirmBills');
+    const snapshot = await dataRef.get();
+    const data = snapshot.docs.map((doc) => doc.data());
+    res.json(data);
 });
 
 app.listen(PORT, () => {

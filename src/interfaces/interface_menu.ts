@@ -1,4 +1,6 @@
-export interface IMenu {
+import { IsDate } from "./interface_date";
+
+export interface IMenu extends IsDate {
     name?: string;
     description?: String;
     price?: number;
