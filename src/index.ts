@@ -16,6 +16,21 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
+app.get("/add/menu", async (req: Request, res: Response) => {
+    const menu: IMenu = {
+        name: "แดงโซดา",
+        category: "อิตาเลี่ยนโซดา",
+        price: 25,
+        image: "",
+        createdAt: new Date(),
+        updatedAt: new Date()
+    };
+    const dataRef = db.collection('menu');
+    dataRef.add(menu).then(() => {
+        res.json(`Data added Successfully`);
+    });
+
+});
 
 app.get("/get/menu", async (req: Request, res: Response) => {
     const dataRef = db.collection('menu');
