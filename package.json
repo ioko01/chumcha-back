@@ -4,13 +4,17 @@
   "description": "backend-chumcha",
   "main": "src/index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "npm run start dist/index.js",
+    "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index.ts"
+    "postinstall": "tsc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@netlify/functions": "^1.4.0",
+    "aws-lambda": "^1.0.7",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -19,9 +23,11 @@
     "firebase": "^9.20.0",
     "firebase-admin": "^11.7.0",
     "firebase-functions": "^4.3.1",
+    "netlify-lambda": "^2.0.16",
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.114",
     "@types/body-parser": "^1.19.2",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",
