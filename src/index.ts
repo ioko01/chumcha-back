@@ -5,6 +5,8 @@ import bodyParser from "body-parser";
 import { db } from "./utils/firebase";
 import cors from "cors";
 import { IMenu } from "./interfaces/interface_menu";
+import http from "http";
+import serverless from "serverless-http";
 config();
 
 
@@ -15,6 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
+
+const server = http.createServer(app)
 
 app.get("/add/menu", async (req: Request, res: Response) => {
     const menu: IMenu = {
@@ -59,6 +63,8 @@ app.get("/get/confirm/menu", async (req: Request, res: Response) => {
     res.json(data);
 });
 
-app.listen(PORT, () => {
-    console.log(`Server listen at PORT http://127.0.0.1:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server listen at PORT http://127.0.0.1:${PORT}`);
+// });
+
+export const handler = serverless(app);
