@@ -7,8 +7,7 @@
     "build": "tsc",
     "start": "npm run start dist/index.js",
     "dev": "nodemon src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "tsc"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
