@@ -22,10 +22,10 @@ const server = http.createServer(app)
 
 app.get("/add/menu", async (req: Request, res: Response) => {
     const menu: IMenu = {
-        name: "แดงโซดา",
-        category: "อิตาเลี่ยนโซดา",
+        name: "ชามะลิ",
+        category: "ปั่น",
         price: 25,
-        image: "",
+        image: "assets/images/ชาเขียวมะลิ2 ขนาด.jpg",
         createdAt: new Date(),
         updatedAt: new Date()
     };
